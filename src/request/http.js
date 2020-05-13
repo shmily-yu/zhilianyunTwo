@@ -90,6 +90,8 @@ instance.interceptors.response.use(
             else if (res.data.result.Code === '400') {
                 tip(res.data.result.Msg)
                 toLogin()
+            } else {
+                console.log(res);
             }
         } else {
             return Promise.reject(res)

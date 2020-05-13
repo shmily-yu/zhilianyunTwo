@@ -13,6 +13,12 @@ const api = {
     //获取
     getIndexShow(params) {
         return axios.post(`${URL}/indexshow`, qs.stringify(params));
+    },
+    //图片
+    getPic(params) {
+        let headers = { "Content-Type": "multipart/form-data" }
+        //上传图片不要用qs
+        return axios.post(`${URL}/uploadsimg`, params, headers)
     }
 }
 
