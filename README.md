@@ -1,24 +1,21 @@
-# template
+# axios封装
 
-## Project setup
-```
-yarn install
-```
+# VH适配
 
-### Compiles and hot-reloads for development
-```
-yarn serve
-```
+# 跨域处理
 
-### Compiles and minifies for production
-```
-yarn build
-```
+# 环境变量配置
+ 
+# icon修改
 
-### Lints and fixes files
-```
-yarn lint
-```
+# vant按需引入，主题修改
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+# 404页面配置
+
+# 全局导航守卫
+
+# token设置
+
+# loading设置
+
+# tools封装

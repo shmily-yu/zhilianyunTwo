@@ -1,32 +1,24 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <keep-alive include="share">
+      <router-view />
+    </keep-alive>
+    <Loading v-show="LOADING"></Loading>
   </div>
 </template>
+<script>
+import { mapState } from "vuex";
+import Loading from "@/components/loading";
+export default {
+  computed: {
+    ...mapState(["LOADING"])
+  },
+  name: "App",
+  components: {
+    Loading
+  }
+};
+</script>
 
 <style lang="less">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
