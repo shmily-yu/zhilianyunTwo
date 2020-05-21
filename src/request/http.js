@@ -21,7 +21,7 @@ const tip = msg => {
  */
 const toLogin = () => {
     router.replace({
-        path: '/login',
+        path: '/acc',
         query: {
             redirect: router.currentRoute.fullPath
         }
@@ -47,9 +47,15 @@ const errorHandle = (status, other) => {
 }
 
 // 创建axios实例
-var instance = axios.create({ timeout: 1000 * 12 });
+var instance = axios.create({
+    timeout: 1000 * 12, withCredentials: true,
+    responseType: "json",
+    maxContentLength: 2000,
+    traditional: true,
+    maxRedirects: 5
+});
 // 设置post请求头
-instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
+instance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded;charset=UTF-8';
 /** 
  * 请求拦截器 
  * 每次请求前，如果存在token则在请求头中携带token 
@@ -76,20 +82,22 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     // 请求成功
     res => {
+        console.log(res);
         store.commit('hideLoading')
         // 如果返回的状态码为200，说明接口请求成功
         if (res.status === 200) {
             if (res.data.result.Code === '200') {
-                res = res.data.result.Response//这里做下处理，页面可以直接拿到数据
-                return Promise.resolve(res);
+                res = res.data.result//这里做下处理
+                return Promise.resolve(res);//只有成功才有返回，所以在页面不用再做判断处理
             }
             else if (res.data.result.Code === '300') {
-                tip(res.data.result.Msg)
-                toLogin()
+                res = res.data.result//这里做下处理
+                tip(res.Msg)
             }
             else if (res.data.result.Code === '400') {
-                tip(res.data.result.Msg)
-                toLogin()
+                res = res.data.result//这里做下处理
+                toLogin()//登录超时 跳去登录页
+                tip(res.Msg)
             } else {
                 console.log(res);
             }
@@ -101,11 +109,11 @@ instance.interceptors.response.use(
     // 请求失败
     error => {
         store.commit('hideLoading')
-        const { response } = error;
-        if (response) {
+        const { resp } = error;
+        if (resp) {
             // 请求已发出，但是不在2xx的范围 
-            errorHandle(response.status, response.data.message);
-            return Promise.reject(response);
+            errorHandle(resp.status, resp);
+            return Promise.reject(resp);
         } else {
             // 处理断网的情况
             // eg:请求超时或断网时，更新state的network状态

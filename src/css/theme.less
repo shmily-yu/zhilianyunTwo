@@ -16,17 +16,17 @@
 @orange-light: #fffbe8;
 @green: #07c160;
 //我的主题色
-@Primary-color: #FED518;
-@Secondary-color: #64DE8E;
+@Primary-color: #333333;
+@Secondary-color: #333333;
 @Defalut-font-size: 14px;
-@Defalut-font-color: #333333;
+@Defalut-font-color: #ffffff;
 
 // Gradient Colors
 @gradient-red: linear-gradient(to right, #ff6034, #ee0a24);
 @gradient-orange: linear-gradient(to right, #ffd01e, #ff8917);
 
 // Component Colors
-@text-color: @gray-8;
+@text-color: @white;
 @active-color: @gray-2;
 @active-opacity: 0.7;
 @disabled-opacity: 0.5;
@@ -195,7 +195,7 @@
 @cell-vertical-padding: 10px;
 @cell-horizontal-padding: @padding-md;
 @cell-text-color: @text-color;
-@cell-background-color: @white;
+@cell-background-color: @black;
 @cell-border-color: @border-color;
 @cell-active-color: @active-color;
 @cell-required-color: @red;
@@ -211,7 +211,7 @@
 @cell-large-label-font-size: @font-size-md;
 
 // CellGroup
-@cell-group-background-color: @white;
+@cell-group-background-color: @black;
 @cell-group-title-color: @gray-6;
 @cell-group-title-padding: @padding-md @padding-md @padding-xs;
 @cell-group-title-font-size: @font-size-md;
@@ -449,13 +449,13 @@
 @loading-spinner-animation-duration: 0.8s;
 
 // NavBar
-@nav-bar-height: 46px;
-@nav-bar-background-color: @white;
+@nav-bar-height: 44px;
+@nav-bar-background-color: #0000;
 @nav-bar-arrow-size: 16px;
-@nav-bar-icon-color: @blue;
-@nav-bar-text-color: @blue;
+@nav-bar-icon-color: @white;
+@nav-bar-text-color: @white;
 @nav-bar-title-font-size: @font-size-lg;
-@nav-bar-title-text-color: @text-color;
+@nav-bar-titlenav-text-color: @text-color;
 @nav-bar-z-index: 1;
 
 // NoticeBar
@@ -538,7 +538,7 @@
 @picker-title-font-size: @font-size-lg;
 @picker-action-padding: 0 @padding-md;
 @picker-action-font-size: @font-size-md;
-@picker-action-text-color: @Primary-color;//神奇
+@picker-action-text-color: @Primary-color; //神奇
 @picker-action-active-color: @active-color;
 @picker-option-font-size: @font-size-lg;
 @picker-option-text-color: @black;
@@ -607,7 +607,7 @@
 
 // Search
 @search-padding: 10px @padding-sm;
-@search-background-color: @white;
+@search-background-color: @black;
 @search-content-background-color: @gray-1;
 @search-input-height: 34px;
 @search-label-padding: 0 5px;
@@ -784,7 +784,8 @@
 @toast-loading-icon-color: @white;
 @toast-line-height: 20px;
 @toast-border-radius: @border-radius-md;
-@toast-background-color: fade(@text-color, 88%);
+// @toast-background-color: fade(@text-color, 88%);
+@toast-background-color: @black;
 @toast-icon-size: 40px;
 @toast-text-min-width: 96px;
 @toast-text-padding: @padding-xs @padding-sm;

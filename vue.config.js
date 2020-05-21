@@ -31,7 +31,7 @@ module.exports = {
             ],
             viewportUnit: "vw",
             fontViewportUnit: "vw",
-            selectorBlackList: [],
+            selectorBlackList: ['ex'],
             minPixelValue: 1,
             mediaQuery: false,
             replace: true,
@@ -45,7 +45,7 @@ module.exports = {
   devServer: {
     open: true,
     host: 'localhost',
-    // host: '192.168.9.107',
+    // host: '192.168.9.107',//手机输入这个IP，在同一网络内手机可以访问电脑网址
     port: 8081,
     https: false,
     proxy: {

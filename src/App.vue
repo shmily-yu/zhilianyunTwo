@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <keep-alive include="share">
-      <router-view />
+      <router-view :key="$route.fullPath" />
     </keep-alive>
     <Loading v-show="LOADING"></Loading>
   </div>
@@ -9,16 +9,19 @@
 <script>
 import { mapState } from "vuex";
 import Loading from "@/components/loading";
+
 export default {
   computed: {
     ...mapState(["LOADING"])
   },
-  name: "App",
   components: {
     Loading
+  },
+  data() {
+    return {};
   }
 };
 </script>
-
-<style lang="less">
+<style lang="less" scoped>
 </style>
+
