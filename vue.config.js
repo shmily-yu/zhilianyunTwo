@@ -44,8 +44,8 @@ module.exports = {
   // 命令行输入 spy-debugger 真机模拟测试
   devServer: {
     open: true,
-    host: 'localhost',
-    // host: '192.168.9.107',//手机输入这个IP，在同一网络内手机可以访问电脑网址
+    // host: 'localhost',
+    host: '192.168.9.111',//手机输入这个IP，在同一网络内手机可以访问电脑网址
     port: 8081,
     https: false,
     proxy: {

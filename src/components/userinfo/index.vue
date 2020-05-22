@@ -21,7 +21,6 @@
 </template>
 
 <script>
-
 export default {
   props: {
     obj: Object
@@ -32,12 +31,11 @@ export default {
       pic: require("../../assets/img/头像.png")
     };
   },
-  computed: {
-    
-  },
+  computed: {},
   methods: {
-    save(){
-      sessionStorage.setItem('obj',JSON.stringify(this.obj))
+    save() {
+      sessionStorage.setItem("obj", JSON.stringify(this.obj));
+      sessionStorage.setItem("pic", JSON.stringify(this.obj.imgurl));
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
@@ -99,6 +97,6 @@ export default {
   }
 }
 a {
-  color: #0081FA;
+  color: #0081fa;
 }
 </style>
