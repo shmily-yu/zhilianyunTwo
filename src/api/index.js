@@ -49,7 +49,7 @@ const api = {
         return axios.post(`${URL}/myownteacher`, qs.stringify(params));
     }
     // 客户信息
-    , getUserInfo(parmas) {
+    , getUserInfo(params) {
         return axios.post(`${URL}/userinfo`, qs.stringify(params));
     }
     // 我的推荐
