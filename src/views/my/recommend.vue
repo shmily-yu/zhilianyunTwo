@@ -19,7 +19,7 @@
         <div class="item">
           <div
             @click.prevent="changeStatus(item.user_id,index)"
-            :class="item.is_talk===0?'already_bg':'none_bg'"
+            :class="item.is_talk===1?'already_bg':'none_bg'"
             class="u-f-ajc conect_type"
           >
             <span>{{item.is_talk===0?'未沟通':'已沟通'}}</span>

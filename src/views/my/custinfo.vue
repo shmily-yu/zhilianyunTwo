@@ -4,10 +4,10 @@
     <div class="box">
       <!-- 名字和状态 -->
       <div class="head_box">
-        <div class="conect_type u-f-ajc" :class="obj.type==='0'?'already_bg':'none_bg'">
-          <span>{{obj.type==='0'?'已沟通':'未沟通'}}</span>
+        <div class="conect_type u-f-ajc" :class="obj.is_talk==='是'?'already_bg':'none_bg'">
+          <span>{{obj.is_talk==='是'?'已沟通':'未沟通'}}</span>
         </div>
-        <div class="name">{{obj.name}}</div>
+        <div class="name">{{obj.true_name}}</div>
       </div>
       <!-- list -->
       <div class="u-f-jsb u-f item" v-for="(item, index) in list" :key="index">
@@ -20,6 +20,7 @@
 
 <script>
 import navBar from "../../components/nav-bar";
+import { mapState } from "vuex";
 
 export default {
   props: {},
@@ -31,54 +32,46 @@ export default {
         pathName: "recommend",
         right: false
       },
-      obj: {
-        type: "0",
-        name: "哈哈哈"
-      },
+      obj: {},
       list: [
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        }
+        { name: "手机号", info: "mobile_phone" },
+        { name: "注册时间", info: "reg_time" },
+        { name: "初步沟通", info: "is_talk" },
+        { name: "讲师姓名", info: "teacher_true_name" },
+        { name: "讲师培训", info: "is_teachering" },
+        { name: "讲师成交状态", info: "is_teachering_end" },
+        { name: "踢单员姓名", info: "ti_true_name" },
+        { name: "踢单员成交状态", info: "ti_status_msg" },
+        { name: "合同", info: "ht_count" }
       ]
     };
   },
-  computed: {},
-  methods: {},
+  computed: { ...mapState(["mobile_phone"]) },
+  methods: {
+    getUser() {
+      let data = {
+        user_id: this.$route.query.user_id,
+        mobile_phone: this.mobile_phone
+      };
+      this.$api.getUserInfo(data).then(res => {
+        if (res) {
+          this.obj = res.Response;
+          for (let key in this.obj) {
+            for (let item of this.list) {
+              if (item.info == key) {
+                item.info = this.obj[key]; //注意:拿对象的value用obj[]
+              }
+            }
+          }
+          // console.log(this.list);
+        }
+      });
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.getUser();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {}
 };
