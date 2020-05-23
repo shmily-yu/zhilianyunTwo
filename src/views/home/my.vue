@@ -53,7 +53,7 @@ export default {
           img: "icon iconfont icon-mimasuo",
           part: "密码",
           info: "",
-          path: "/password"
+          path: "/change"
         },
         {
           img: "icon iconfont icon-guanyu",
@@ -64,8 +64,8 @@ export default {
         {
           img: "icon iconfont icon-tuichu",
           part: "退出账户",
-          info: "exit",
-          path: "/login"
+          info: { info: "exit" },
+          path: "/acc"
         }
       ]
     };
@@ -82,7 +82,9 @@ export default {
     }
   },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {this.getData()}
+  created() {
+    this.getData();
+  }
 };
 </script>
 

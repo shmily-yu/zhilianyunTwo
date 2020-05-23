@@ -21,6 +21,7 @@ import { mapState, mapMutations } from "vuex";
 import newsItem from "../../components/news-item";
 
 export default {
+  name: "home",
   components: {
     newsItem,
     Search,

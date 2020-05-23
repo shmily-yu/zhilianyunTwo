@@ -13,12 +13,18 @@ const routes = [
       {
         path: '/home',
         name: 'home',
-        component: () => import('../views/home/home.vue')
+        component: () => import('../views/home/home.vue'),
+        meta: {
+          requireAuth: true
+        }
       },
       {
         path: '/my',
         name: 'my',
-        component: () => import('../views/home/my.vue')
+        component: () => import('../views/home/my.vue'),
+        meta: {
+          requireAuth: true
+        }
       }
     ]
   },
@@ -52,24 +58,51 @@ const routes = [
     name: 'forgetnext',
     component: () => import('../views/password/forget-next.vue')
   },
+  // 修改密码1
+  {
+    path: '/change',
+    name: 'change',
+    component: () => import('../views/password/change.vue'),
+    meta: {
+      requireAuth: true
+    }
+  },
+  // 修改密码2
+  {
+    path: '/changenext',
+    name: 'changenext',
+    component: () => import('../views/password/change-next.vue'),
+    meta: {
+      requireAuth: true
+    }
+  },
 
   // 搜索
   {
     path: '/search',
     name: 'search',
-    component: () => import('../views/search')
+    component: () => import('../views/search'),
+    meta: {
+      requireAuth: true
+    }
   },
-  // 搜索
+  // 公告
   {
     path: '/notice',
     name: 'notice',
-    component: () => import('../views/notice/index.vue')
+    component: () => import('../views/notice/index.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 新闻
   {
     path: '/news',
     name: 'news',
-    component: () => import('../views/news')
+    component: () => import('../views/news'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 新闻内容
   {
@@ -81,31 +114,46 @@ const routes = [
   {
     path: '/recommend',
     name: 'recommend',
-    component: () => import('../views/my/recommend.vue')
+    component: () => import('../views/my/recommend.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 客户信息
   {
     path: '/custinfo',
     name: 'custinfo',
-    component: () => import('../views/my/custinfo.vue')
+    component: () => import('../views/my/custinfo.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 专属讲师
   {
     path: '/teacher',
     name: 'teacher',
-    component: () => import('../views/my/teacher.vue')
+    component: () => import('../views/my/teacher.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 分享
   {
     path: '/share',
     name: 'share',
-    component: () => import('../views/my/share.vue')
+    component: () => import('../views/my/share.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 用户信息
   {
     path: '/userinfo',
     name: 'userinfo',
-    component: () => import('../views/my/userinfo.vue')
+    component: () => import('../views/my/userinfo.vue'),
+    meta: {
+      requireAuth: true
+    }
   },
   // 关于我们
   {
@@ -135,12 +183,10 @@ const router = new VueRouter({
 router.beforeEach((to, from, next) => {
   if (to.meta.requireAuth) {  // 判断该路由是否需要登录权限
     if (localStorage.token) {  // 获取当前的token是否存在
-      console.log("token存在");
       next();
     } else {
-      console.log("token不存在");
       next({
-        path: '/login', // 将跳转的路由path作为参数，登录成功后跳转到该路由
+        path: '/acc', // 将跳转的路由path作为参数，登录成功后跳转到该路由
         // query: { redirect: to.fullPath }
       })
     }

@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <keep-alive include="share">
+    <keep-alive include="share,teacher,about">
       <router-view :key="$route.fullPath" />
     </keep-alive>
     <Loading v-show="LOADING"></Loading>

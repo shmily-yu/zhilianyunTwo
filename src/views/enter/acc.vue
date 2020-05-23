@@ -64,9 +64,8 @@ export default {
         }
       });
     },
-    //退出登录跳转过来则清除token和手机号
+    //退出登录跳转过来则清除手机号
     clear() {
-      localStorage.removeItem("token");
       sessionStorage.removeItem("mobile_phone");
       this.form.mobile_phone = "";
     }
@@ -76,7 +75,7 @@ export default {
   },
   mounted() {
     if (this.$route.query.info === "exit") {
-      this.clear_user_info();
+      this.clear();
     }
   }
 };
@@ -87,7 +86,7 @@ export default {
   padding: 0 70px;
 }
 .acc {
-  height: 100%;
+  min-height: 100vh;
   width: 100%;
   background: #000;
 }

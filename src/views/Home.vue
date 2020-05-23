@@ -1,6 +1,6 @@
 <template>
   <div class>
-    <keep-alive include="share">
+    <keep-alive include="share,teacher,about">
       <router-view />
     </keep-alive>
     <tabBar />

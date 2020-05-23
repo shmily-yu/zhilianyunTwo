@@ -4,16 +4,16 @@
     <div class="box">
       <!-- 名字-->
       <div class="head_box">
-        <div class="name">讲师: &#8195 {{obj.name}}</div>
+        <div class="name">讲师: &#8195 {{obj.user_name}}</div>
       </div>
-      <!-- list -->
-      <div class="u-f-jsb u-f item" v-for="(item, index) in list" :key="index">
-        <div>{{item.name}}</div>
-        <div>{{item.info}}</div>
+      <div class="u-f-jsb u-f item">
+        <div>{{obj.true_name}}</div>
+        <div>{{obj.mobile_phone}}</div>
       </div>
+
       <!--二维码  -->
       <div class="u-f-ajc">
-        <img :src="obj.img" alt class="code" />
+        <img :src="obj.wechat_img" alt class="code" />
       </div>
       <div class="u-f-ajc text">微信二维码</div>
     </div>
@@ -22,38 +22,38 @@
 
 <script>
 import navBar from "../../components/nav-bar";
+import { mapState } from "vuex";
 
 export default {
+  name: "teacher",
   props: {},
   components: { navBar },
   data() {
     return {
       navBar: {
-        name: "信息客户",
+        name: "专属讲师",
         pathName: "my",
         right: false
       },
-      obj: {
-        type: "0",
-        name: "哈哈哈",
-        img: require("../../assets/img/浩瀚星空.jpg")
-      },
-      list: [
-        {
-          name: "手机号",
-          info: "123456484158"
-        },
-        {
-          name: "手机号",
-          info: "123456484158"
-        }
-      ]
+      obj: {}
     };
   },
-  computed: {},
-  methods: {},
+  computed: { ...mapState(["mobile_phone"]) },
+  methods: {
+    getData() {
+      let data = { mobile_phone: this.mobile_phone };
+      this.$api.getTeacher(data).then(res => {
+        if (res) {
+          this.obj = res.Response;
+          console.log(res);
+        }
+      });
+    }
+  },
   //生命周期 - 创建完成（可以访问当前this实例）
-  created() {},
+  created() {
+    this.getData();
+  },
   //生命周期 - 挂载完成（可以访问DOM元素）
   mounted() {}
 };

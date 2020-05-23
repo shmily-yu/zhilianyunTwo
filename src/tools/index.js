@@ -104,3 +104,22 @@ export const compressImage = function compressImage(file) {
     }
 }
 
+// 将图片转为base64格式
+export const img2base64 = function img2base64(url, crossOrigin) {
+    return new Promise(resolve => {
+        const img = new Image();
+        img.onload = () => {
+            const c = document.createElement("canvas");
+            c.width = img.naturalWidth;
+            c.height = img.naturalHeight;
+            const cxt = c.getContext("2d");
+            cxt.drawImage(img, 0, 0);
+            // 得到图片的base64编码数据
+            resolve(c.toDataURL("image/png"));
+        };
+        // 结合合适的CORS响应头，实现在画布中使用跨域<img>元素的图像
+        crossOrigin && img.setAttribute("crossOrigin", crossOrigin);
+        img.src = url;
+    });
+}
+

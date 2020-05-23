@@ -96,7 +96,7 @@ export default {
   padding: 70px 70px 0;
 }
 .acc {
-  height: 100vh;
+  // height: 100vh;
   background: #000;
 }
 .van-cell {
