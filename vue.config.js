@@ -50,8 +50,8 @@ module.exports = {
     https: false,
     proxy: {
       '/api': {
-        // target: 'http://192.168.1.86/wp/20200421/api.php/Main',//测试地址
-        target: 'http://crm.zjzhilianyun.com/api.php/Main',//线上地址
+        // target: 'http://crm.zjzhilianyun.com/api.php/Main',//线上地址
+        target: 'https://www.jxszh.com/yunos/api.php',//线上地址
         ws: true,
         changOrigin: true,
         pathRewrite: {

@@ -8,7 +8,7 @@
       </van-row>
       <div class="head_word">
         <div>Hello,</div>
-        <div>欢迎{{text}}至联云</div>
+        <div>{{text}}</div>
       </div>
     </div>
   </div>

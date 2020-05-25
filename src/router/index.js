@@ -161,6 +161,18 @@ const routes = [
     name: 'about',
     component: () => import('../views/my/about.vue')
   },
+  // 查询登录页
+  {
+    path: '/query',
+    name: 'query',
+    component: () => import('../views/query/login.vue')
+  },
+  // 查询登录页
+  {
+    path: '/result',
+    name: 'result',
+    component: () => import('../views/query/result.vue')
+  },
   // 404页面设置
   {
     path: '/404',

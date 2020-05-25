@@ -1,6 +1,6 @@
 <template>
   <div class="acc">
-    <logo :text="'登录'" />
+    <logo :text="'欢迎登录至联云'" />
     <van-form @submit="onSubmit">
       <van-field
         @input="checkPhone"

@@ -1,8 +1,9 @@
 <template>
   <div class="acc">
-    <logo :text="'欢迎注册至联云'" />
+    <logo :text="'欢迎查询！'" />
     <van-form @submit="onSubmit">
       <van-field
+        left-icon="manager"
         @input="checkPhone"
         v-model="form.mobile_phone"
         name="手机号"
@@ -14,36 +15,18 @@
         ]"
       />
       <van-field
+        left-icon="lock"
         v-model="form.code"
-        name="验证码"
-        placeholder="验证码"
+        name="查询码"
+        placeholder="查询码"
         type="number"
         :disabled="codeFlag"
-        :rules="[{ required: true, message: '请填写验证码' }]"
+        :rules="[{ required: true, message: '请填写查询码' }]"
       >
         <template #button>
           <phoneCode @openInput="openInput" :ready="ready" :form="form" />
         </template>
       </van-field>
-      <van-field
-        v-model="form.password"
-        name="密码"
-        placeholder="密码"
-        type="password"
-        :rules="[{ required: true, message: '请填写密码' }]"
-      />
-      <van-field
-        v-model="form.inviter_id"
-        name="inviter_id"
-        placeholder="邀请码"
-        :rules="[{ required: true, message: '请填写邀请码' }]"
-      />
-      <van-field
-        v-model="form.true_name"
-        name="true_name"
-        placeholder="姓名"
-        :rules="[{ required: true, message: '请填写姓名' }]"
-      />
       <div class="btn">
         <van-button
           round
@@ -51,7 +34,7 @@
           type="info"
           native-type="submit"
           :disabled="empty||!ready/*只要有一个是真,按钮就失效*/"
-        >注册</van-button>
+        >查询</van-button>
       </div>
     </van-form>
   </div>
@@ -61,7 +44,6 @@
 import phoneCode from "../../components/phone-code";
 import logo from "../../components/logo";
 import { reg, hasEmpty } from "../../tools/index.js";
-import { mapMutations } from "vuex";
 
 export default {
   components: { logo, phoneCode },
@@ -71,12 +53,9 @@ export default {
       ready: false,
       codeFlag: true, //验证码输入框是否禁用
       form: {
-        inviter_id: this.$route.query.createcode,
         mobile_phone: "",
         code: "",
-        password: "",
-        true_name: "",
-        get_type: 0
+        datacenter_id: "2"
       }
     };
   },
@@ -94,16 +73,9 @@ export default {
     openInput() {
       this.codeFlag = false;
     },
-    ...mapMutations(["set_mobile_phone"]),
     onSubmit() {
-      let data = this.form;
-      this.$api.getSign(data).then(res => {
-        if (res) {
-          this.set_mobile_phone(data.mobile_phone);
-        } else {
-          console.log(res);
-        }
-      });
+      sessionStorage.setItem("data", JSON.stringify(this.form));
+      this.$router.push("/result");
     }
   }
 };

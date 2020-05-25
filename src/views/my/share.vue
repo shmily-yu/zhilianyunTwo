@@ -21,11 +21,8 @@
         </div>
       </div>
 
-      <!-- canvas -->
-      <div id="canvas" class="u-f-ajc" />
-
       <!-- img -->
-      <img :src="img" id="img" />
+      <img :src="img" id="img" v-show="flag" @load="flag=true" />
     </div>
 
     <div class="u-f-ajc toast">扫描二维码完成邀请注册</div>
@@ -43,6 +40,7 @@ export default {
   components: { navBar },
   data() {
     return {
+      flag: false,
       navBar: {
         name: "分享",
         pathName: "my",
@@ -78,7 +76,7 @@ export default {
     // 绘制canvas
     draw() {
       html2canvas(document.getElementById("html")).then(canvas => {
-        document.getElementById("canvas").appendChild(canvas);
+        document.createElement("canvas");
         this.img = canvas.toDataURL("image/png");
       });
     }
@@ -177,16 +175,9 @@ export default {
   color: #fff;
   font-size: 22px;
 }
-// canvas
-#canvas {
-  z-index: -1;
-  position: absolute;
-  width: 608px;
-  height: 873px;
-}
+
 // img
 #img {
-  z-index: 999;
   position: absolute;
   width: 608px;
   height: 873px;
