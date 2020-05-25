@@ -61,12 +61,11 @@ export default {
     padding: 20px 0px 0 0px;
     // 标题
     .news_item_title {
-      overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      height: 80px;
+      overflow: hidden;
+      width: 430px;
+      height: 110px;
       font-size: 30px;
       font-weight: 500;
       color: rgba(243, 243, 247, 1);
@@ -77,7 +76,6 @@ export default {
       font-size: 26px;
       font-weight: 500;
       color: rgba(106, 106, 106, 1);
-      margin-top: 26px;
       //眼睛图标
       .icon-yanjing {
         font-size: 30px;

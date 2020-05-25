@@ -45,7 +45,7 @@ module.exports = {
   devServer: {
     open: true,
     // host: 'localhost',
-    host: '192.168.9.111',//手机输入这个IP，在同一网络内手机可以访问电脑网址
+    host: '192.168.1.189',//手机输入这个IP，在同一网络内手机可以访问电脑网址
     port: 8081,
     https: false,
     proxy: {
