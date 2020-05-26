@@ -6,7 +6,11 @@
     <newsBar :word="word" :right="right" />
     <van-list v-model="loading" :finished="finished" finished-text="没有更多了" @load="onLoad">
       <div v-for="(item, index) in list" :key="index">
-        <newsItem :item="item" />
+        <router-link
+          :to="{name:'newsdetail', params: {id:item.id,createcode:code,mobile_phone:mobile}}"
+        >
+          <newsItem :item="item" />
+        </router-link>
       </div>
     </van-list>
   </div>
@@ -42,8 +46,12 @@ export default {
       list: [] //列表
     };
   },
-  computed: { ...mapState(["mobile_phone"]) },
+  computed: { ...mapState(["mobile_phone", "code"]),
+  mobile() {
+      return window.btoa(this.mobile_phone); //加密
+    } },
   methods: {
+    
     onLoad() {
       let data = { mobile_phone: this.mobile_phone };
       this.$api.getHome(data).then(res => {

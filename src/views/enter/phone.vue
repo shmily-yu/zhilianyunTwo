@@ -109,7 +109,8 @@ export default {
   padding: 30px 30px;
 }
 .btn {
-  margin: 50px 30px 0;
+  margin: 50px auto;
+  width: 500px;
 }
 
 .phonelogin {

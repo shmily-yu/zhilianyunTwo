@@ -20,6 +20,7 @@
     <newsBar :word="word" :right="right" class="newsbar" />
     <!-- list -->
     <van-list
+      :immediate-check="false"
       class="newlist"
       v-model="loading"
       :finished="finished"
@@ -27,7 +28,11 @@
       @load="onLoad"
     >
       <div v-for="(item, index) in list" :key="index">
-        <newsItem :item="item" />
+        <router-link
+          :to="{name:'newsdetail', params: {id:item.id,createcode:$route.params.createcode,mobile_phone:$route.params.mobile_phone}}"
+        >
+          <newsItem :item="item" />
+        </router-link>
       </div>
     </van-list>
     <!-- 浮窗 -->
@@ -67,7 +72,7 @@ export default {
   },
   computed: {
     mobile() {
-      return window.atob(this.$route.params.mobile_phone); //base64解密
+      return window.atob(this.$route.params.mobile_phone); //解密
     }
   },
   methods: {
@@ -93,7 +98,9 @@ export default {
   //生命周期 - 创建完成（可以访问当前this实例）
   created() {},
   //生命周期 - 挂载完成（可以访问DOM元素）
-  mounted() {}
+  mounted() {
+    this.onLoad();
+  }
 };
 </script>
 

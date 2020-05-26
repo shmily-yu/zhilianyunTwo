@@ -2,8 +2,7 @@ import axios from '@/request/http.js'; // 导入http中创建的axios实例
 import qs from 'qs'; // 根据需求是否导入qs模块
 
 const host = process.env.VUE_APP_HOST//上线打包的环境变量
-// const OnLineURL = "http://crm.zjzhilianyun.com/api.php/Main"//上线地址
-// const OnLineURL = "https://www.jxszh.com/yunos/api.php/Main"//上线地址
+const OnLineURL = "http://crm.zjzhilianyun.com/api.php/Main"//上线地址
 const URL = host === 'production' ? OnLineURL : "/api";//本地测试和打包切换
 
 const api = {
@@ -81,13 +80,6 @@ const api = {
     , getNoticeId(params) {
         return axios.post(`${URL}/norcieinfo`, qs.stringify(params));
     }
-    //查询码
-    , getQuery(params) {
-        return axios.post(`${URL}/Login/weicdoeapi`, qs.stringify(params));
-    }
-    //查询结果
-    , getResult(params) {
-        return axios.post(`${URL}Login/wwwsearchapi`, qs.stringify(params));
-    }
+   
 }
 export default api;

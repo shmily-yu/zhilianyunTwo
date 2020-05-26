@@ -1,6 +1,11 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 
+const routerPush = VueRouter.prototype.push
+VueRouter.prototype.push = function push(location) {
+  return routerPush.call(this, location).catch(error => error)
+}
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -42,7 +47,7 @@ const routes = [
   },
   // 注册
   {
-    path: '/signup',
+    path: '/Signup',
     name: 'signup',
     component: () => import('../views/enter/signup.vue')
   },
@@ -161,18 +166,6 @@ const routes = [
     name: 'about',
     component: () => import('../views/my/about.vue')
   },
-  // 查询登录页
-  {
-    path: '/query',
-    name: 'query',
-    component: () => import('../views/query/login.vue')
-  },
-  // 查询登录页
-  {
-    path: '/result',
-    name: 'result',
-    component: () => import('../views/query/result.vue')
-  },
   // 404页面设置
   {
     path: '/404',
@@ -187,8 +180,8 @@ const routes = [
 ]
 
 const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
+  // mode: 'history',
+  // base: process.env.BASE_URL,
   routes
 })
 // 全局导航守卫

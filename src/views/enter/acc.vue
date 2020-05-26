@@ -94,7 +94,8 @@ export default {
   padding: 30px 30px;
 }
 .btn {
-  margin: 50px 30px 0;
+  width: 500px;
+  margin: 50px auto;
 }
 .forget {
   float: right;

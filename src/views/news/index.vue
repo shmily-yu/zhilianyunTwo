@@ -45,7 +45,11 @@
             :immediate-check="false"
           >
             <div v-for="(item, index) in list" :key="index">
-              <newsItem :item="item" />
+              <router-link
+                :to="{name:'newsdetail', params: {id:item.id,createcode:code,mobile_phone:mobile}}"
+              >
+                <newsItem :item="item" />
+              </router-link>
             </div>
           </van-list>
         </van-pull-refresh>
@@ -73,8 +77,11 @@ export default {
       tabList: []
     };
   },
-  computed: { ...mapState(["mobile_phone"]) },
+  computed: { ...mapState(["mobile_phone", "code"]) ,mobile() {
+      return window.btoa(this.mobile_phone); //加密
+    },},
   methods: {
+    
     // 资讯类型
     getType() {
       let data = { mobile_phone: this.mobile_phone };

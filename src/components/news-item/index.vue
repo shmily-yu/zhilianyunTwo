@@ -1,29 +1,24 @@
 <template>
   <div class>
-    <router-link
-      :to="{name:'newsdetail', params: {id:item.id,createcode:code,mobile_phone:mobile}}"
-    >
-      <div class="news_item u-f u-f-jsb">
-        <div class="news_item_left">
-          <div class="news_item_title">{{item.title}}</div>
-          <div class="news_item_bottom u-f u-f-jsb">
-            <div class="news_item_bottom_left u-f-ac">
-              <div class="icon iconfont icon-yanjing"></div>
-              <div class="news_item_look">{{item.read_nums}}</div>
-            </div>
-            <div class="news_item_time">{{addtime(item.add_time)}}</div>
+    <div class="news_item u-f u-f-jsb">
+      <div class="news_item_left">
+        <div class="news_item_title">{{item.title}}</div>
+        <div class="news_item_bottom u-f u-f-jsb">
+          <div class="news_item_bottom_left u-f-ac">
+            <div class="icon iconfont icon-yanjing"></div>
+            <div class="news_item_look">{{item.read_nums}}</div>
           </div>
-        </div>
-        <div class="news_item_right">
-          <img :src="item.imgurl" alt />
+          <div class="news_item_time">{{addtime(item.add_time)}}</div>
         </div>
       </div>
-    </router-link>
+      <div class="news_item_right">
+        <img :src="item.imgurl" alt />
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import { mapState } from "vuex";
 import { getDate } from "../../tools/index.js"; //外部引入的方法要重新注册，不要加this
 export default {
   props: {
@@ -34,10 +29,7 @@ export default {
     return {};
   },
   computed: {
-    ...mapState(["code", "mobile_phone"]),
-    mobile() {
-      return window.btoa(this.mobile_phone); //base64加密
-    }
+    
   },
   methods: {
     addtime(val) {

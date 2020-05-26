@@ -55,5 +55,10 @@ export default {
   border-radius: 10px;
   font-size: 26px;
   line-height: 0;
+  /deep/span {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+  }
 }
 </style>

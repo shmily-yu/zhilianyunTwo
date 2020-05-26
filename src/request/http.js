@@ -82,7 +82,7 @@ instance.interceptors.request.use(
 instance.interceptors.response.use(
     // 请求成功
     res => {
-        console.log(res);
+        // console.log(res);
         store.commit('hideLoading')
         // 如果返回的状态码为200，说明接口请求成功
         if (res.status === 200) {
@@ -97,7 +97,7 @@ instance.interceptors.response.use(
             else if (res.data.result.Code === '400') {
                 res = res.data.result//这里做下处理
                 toLogin()//登录超时 跳去登录页
-                tip(res.Msg)
+                tip('请先登录！')
             } else {
                 console.log(res);
             }
