@@ -5,7 +5,7 @@
       <van-field
         @input="checkPhone"
         v-model="form.mobile_phone"
-        name="手机号"
+        name="mobile_phone"
         placeholder="手机号"
         type="tel"
         :rules="[
@@ -15,19 +15,19 @@
       />
       <van-field
         v-model="form.code"
-        name="验证码"
+        name="code"
         placeholder="验证码"
         type="number"
-        :disabled="codeFlag"
         :rules="[{ required: true, message: '请填写验证码' }]"
       >
         <template #button>
-          <phoneCode @openInput="openInput" :ready="ready" :form="form" />
+          <!-- <phoneCode @openInput="openInput" :ready="ready" :form="form" /> -->
+          <phoneCode  :ready="ready" :form="form" />
         </template>
       </van-field>
       <van-field
         v-model="form.password"
-        name="密码"
+        name="password"
         placeholder="密码"
         type="password"
         :rules="[{ required: true, message: '请填写密码' }]"
@@ -69,14 +69,13 @@ export default {
     return {
       phone_reg: reg.phone, //正则
       ready: false,
-      codeFlag: true, //验证码输入框是否禁用
+      // codeFlag: true, //验证码输入框是否禁用
       form: {
         inviter_id: this.$route.query.createcode,
         mobile_phone: "",
         code: "",
         password: "",
-        true_name: "",
-        get_type: 0
+        true_name: ""
       }
     };
   },
@@ -91,19 +90,21 @@ export default {
       this.phone_reg.test(val) ? (this.ready = true) : (this.ready = false);
     },
     // 解禁验证码输入框
-    openInput() {
-      this.codeFlag = false;
-    },
+    // openInput() {
+    //   this.codeFlag = false;
+    // },
     ...mapMutations(["set_mobile_phone"]),
-    onSubmit() {
-      let data = this.form;
-      this.$api.getSign(data).then(res => {
+    onSubmit(e) {
+      console.log(e);
+      this.$api.getSign(e).then(res => {
+        console.log(res);
         if (res) {
-          this.set_mobile_phone(data.mobile_phone);
+          this.set_mobile_phone(e.mobile_phone);
+          this.$router.push({name:'acc'})
         } else {
           console.log(res);
         }
-      });
+      }).catch(err=>{console.log(err);})
     }
   }
 };

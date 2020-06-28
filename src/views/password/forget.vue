@@ -18,11 +18,10 @@
         name="验证码"
         placeholder="验证码"
         type="number"
-        :disabled="codeFlag"
         :rules="[{ required: true, message: '请填写验证码' }]"
       >
         <template #button>
-          <phoneCode @openInput="openInput" :ready="ready" :form="form" />
+          <phoneCode  :ready="ready" :form="form" />
         </template>
       </van-field>
       <div class="btn">

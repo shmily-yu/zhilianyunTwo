@@ -14,7 +14,6 @@
         ]"
       />
       <van-field
-        :disabled="codeFlag"
         v-model="form.code"
         name="验证码"
         placeholder="验证码"
@@ -22,7 +21,7 @@
         :rules="[{ required: true, message: '请填写验证码' }]"
       >
         <template #button>
-          <phoneCode @openInput="openInput" :ready="true" :form="form" />
+          <phoneCode  :ready="true" :form="form" />
         </template>
       </van-field>
       <div class="btn">
@@ -48,7 +47,6 @@ export default {
         right: false
       },
       phone_reg: reg.phone, //正则
-      codeFlag: true, //验证码输入框是否禁用
       form: {
         get_type: 1,
         mobile_phone: "",

@@ -18,11 +18,10 @@
         name="验证码"
         placeholder="验证码"
         type="number"
-        :disabled="codeFlag"
         :rules="[{ required: true, message: '请填写验证码' }]"
       >
         <template #button>
-          <phoneCode @openInput="openInput" :ready="ready" :form="form" />
+          <phoneCode  :ready="ready" :form="form" />
         </template>
       </van-field>
       <div class="btn">
@@ -71,9 +70,9 @@ export default {
       this.phone_reg.test(val) ? (this.ready = true) : (this.ready = false);
     },
     // 解禁验证码输入框
-    openInput() {
-      this.codeFlag = false;
-    },
+    // openInput() {
+    //   this.codeFlag = false;
+    // },
     ...mapMutations(["set_token", "set_mobile_phone"]),
     onSubmit() {
       let data = this.form;

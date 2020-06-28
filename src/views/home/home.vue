@@ -54,6 +54,7 @@ export default {
     
     onLoad() {
       let data = { mobile_phone: this.mobile_phone };
+      console.log(data);
       this.$api.getHome(data).then(res => {
         if (res) {
           this.list = res.Response.news; //将数组一次性全部赋值,这里不用page

@@ -28,7 +28,7 @@ export default {
         this.countdown();
         this.$toast.success("发送成功");
       });
-      this.$emit("openInput", ""); //按下按钮，触发父组件的事件，使输入框解禁
+      // this.$emit("openInput", ""); //按下按钮，触发父组件的事件，使输入框解禁
     },
     // 重置倒计时
     countdown() {
